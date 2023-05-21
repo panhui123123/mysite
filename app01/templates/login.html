@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/plugins/bootstrap-3.4.1-dist/css/bootstrap.css">
+    <style>
+        body {
+            background-color: #F0FFF0;
+        }
+        .account{
+            width: 400px;
+            height: 330px;
+            border: 1px solid #dddddd;
+            margin: 200px auto;
+            border-radius: 3px;
+            padding: 20px 40px;
+            box-shadow: 5px 5px 5px #aaaaaa;
+            background-color: white;
+        }
+        .account h2{
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="account">
+        <h2>用户登录</h2>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+                <label>用户名</label>
+                {{ form.username }}
+                <span style="color: red; font-weight: bold;">{{ form.username.errors.0 }}</span>
+            </div>
+            <div class="form-group">
+                <label>密码</label>
+                {{ form.password }}
+                <span style="color: red; font-weight: bold" >{{ form.password.errors.0 }}</span>
+            </div>
+            <div class="checkbox">
+                <a href="#" style="color: #002a80">没有账号，点我注册</a>
+            </div>
+            <button type="submit" class="btn btn-primary">登录</button>
+        </form>
+    </div>
+
+</body>
+</html>

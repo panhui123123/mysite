@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+
+
+{% block content %}
+
+    <div class="container">
+        <div>
+            <a href="/admin/add/" class="btn-success btn" style="margin-bottom: 15px">新建管理员</a>
+            <div style="float: right; width: 250px">
+                <form method="get">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="query" placeholder="请输入用户名搜索"
+                               value={{ search_data }}>
+                        <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">搜索</button>
+                    </span>
+                    </div><!-- /input-group -->
+                </form>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                管理员列表
+            </div>
+
+            <!-- Table -->
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>用户名</th>
+                    <th>密码</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for obj in queryset %}
+                    <tr>
+                        <td>{{ obj.id }}</td>
+                        <td>{{ obj.username }}</td>
+                        <td>{{ obj.password }}</td>
+                        <td>
+                            <a href="/admin/{{ obj.id }}/edit/" class="btn btn-primary btn-xs">编辑</a>
+                            <a href="/admin/{{ obj.id }}/reset/" class="btn btn-primary btn-xs">重置密码</a>
+                            <a href="/admin/{{ obj.id }}/delete/" class="btn btn-danger btn-xs">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+        <div class="clearfix">
+            <ul class="pagination" style="float: left">
+                {{ page_string }}
+            </ul>
+        </div>
+
+    </div>
+
+{% endblock %}
